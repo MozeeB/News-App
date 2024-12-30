@@ -1,4 +1,4 @@
-package com.cikup.news
+package com.cikup.news.presentation.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
