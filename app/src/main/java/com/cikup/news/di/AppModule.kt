@@ -2,6 +2,7 @@ package com.cikup.news.di
 
 import android.app.Application
 import androidx.room.Room
+import com.cikup.news.data.local.NewsDao
 import com.cikup.news.data.local.NewsDatabase
 import com.cikup.news.data.local.NewsTypeConvertor
 import com.cikup.news.data.remote.NewsApi
@@ -42,4 +43,10 @@ object AppModule {
             .fallbackToDestructiveMigration()
             .build()
     }
+
+    @Provides
+    @Singleton
+    fun provideNewsDao(
+        newsDatabase: NewsDatabase
+    ) : NewsDao = newsDatabase.newsDao
 }
