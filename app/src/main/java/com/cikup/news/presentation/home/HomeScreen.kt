@@ -65,14 +65,6 @@ fun HomeScreen(
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold
         )
-//        Image(
-//            painter = painterResource(id = R.drawable.ic_launcher_background),
-//            contentDescription = null,
-//            modifier = Modifier
-//                .width(150.dp)
-//                .height(30.dp)
-//                .padding(horizontal = MediumPadding1)
-//        )
 
         Spacer(modifier = Modifier.height(MediumPadding1))
 

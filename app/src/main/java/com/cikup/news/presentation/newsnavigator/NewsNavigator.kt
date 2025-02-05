@@ -20,6 +20,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.cikup.news.R
 import com.cikup.news.domain.model.Article
+import com.cikup.news.presentation.details.DetailsScreen
+import com.cikup.news.presentation.details.DetailsViewModel
 import com.cikup.news.presentation.home.HomeScreen
 import com.cikup.news.presentation.home.HomeViewModel
 import com.cikup.news.presentation.navgraph.Route
@@ -101,6 +103,20 @@ fun NewsNavigator() {
             }
             composable(route = Route.SearchScreen.route) {
 
+            }
+
+            composable(route = Route.DetailsScreen.route) {
+                val viewModel: DetailsViewModel = hiltViewModel()
+                navController.previousBackStackEntry?.savedStateHandle?.get<Article?>("article")?.let { article ->
+                    DetailsScreen(
+                        article = article,
+                        event = viewModel::onEvent,
+                        sideEffect = viewModel.sideEffect,
+                        navigateUp = {
+                            navController.navigateUp()
+                        }
+                    )
+                }
             }
         }
     }
