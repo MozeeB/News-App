@@ -20,11 +20,15 @@ import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.cikup.news.R
 import com.cikup.news.domain.model.Article
+import com.cikup.news.presentation.bookmark.BookmarkScreen
+import com.cikup.news.presentation.bookmark.BookmarkViewModel
 import com.cikup.news.presentation.details.DetailsScreen
 import com.cikup.news.presentation.details.DetailsViewModel
 import com.cikup.news.presentation.home.HomeScreen
 import com.cikup.news.presentation.home.HomeViewModel
 import com.cikup.news.presentation.navgraph.Route
+import com.cikup.news.presentation.search.SearchScreen
+import com.cikup.news.presentation.search.SearchViewModel
 
 @Composable
 fun NewsNavigator() {
@@ -102,7 +106,19 @@ fun NewsNavigator() {
                 )
             }
             composable(route = Route.SearchScreen.route) {
-
+                val viewModel: SearchViewModel = hiltViewModel()
+                val state = viewModel.state.value
+                OnBackClickStateSaver(navController)
+                SearchScreen(
+                    state = state,
+                    event = viewModel::onEvent,
+                    navigateToDetails = { article ->
+                        navigateToDetails(
+                            navController = navController,
+                            article = article
+                        )
+                    }
+                )
             }
 
             composable(route = Route.DetailsScreen.route) {
@@ -117,6 +133,21 @@ fun NewsNavigator() {
                         }
                     )
                 }
+            }
+
+            composable(route = Route.BookmarkScreen.route) {
+                val viewModel: BookmarkViewModel = hiltViewModel()
+                val static = viewModel.state.value
+                OnBackClickStateSaver(navController = navController)
+                BookmarkScreen(
+                    state = static,
+                    navigateToDetails = { article ->
+                        navigateToDetails(
+                            navController = navController,
+                            article = article
+                        )
+                    }
+                )
             }
         }
     }
