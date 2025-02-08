@@ -3,6 +3,7 @@ package com.cikup.news.presentation.details.components
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -58,7 +59,7 @@ fun DetailsTopBar(
             }
             IconButton(onClick = onBrowsingClick) {
                 Icon(
-                    imageVector = Icons.AutoMirrored.Filled.List,
+                    imageVector = Icons.AutoMirrored.Filled.ExitToApp,
                     contentDescription = null
                 )
             }

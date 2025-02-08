@@ -8,5 +8,5 @@ import javax.inject.Inject
 class GetSavedArticles @Inject constructor(
     private val newsDao: NewsDao
 ) {
-    suspend operator fun invoke(): Flow<List<Article>> = newsDao.getArticles()
+    operator fun invoke(): Flow<List<Article>> = newsDao.getArticles()
 }
